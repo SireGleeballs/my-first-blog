@@ -7,13 +7,13 @@
         <header>
             <h1><a href="/">Daniels Blog</a></h1>
         </header>
-
+    
+    {% for post in posts}
         <article>
-            {{ posts }}
+            <time>published: {{ post.published_date }}</time>
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
-
-        <article>
-            {{ posts }}
-        </article>
+    {% endfor $}
     </body>
 </html>
