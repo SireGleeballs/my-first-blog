@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <article class="form">
+        <aside class="actions">
+            <a class="btn btn-secondary" href="{% url 'form_edit' pk=form.pk %}">
+                {% include './icons/pencil-fill.svg' %}
+            </a>
+        </aside>
+        <h2>{{ form.name }}</h2>
+        <p> Address Line 1: {{ form.address_L1}}</p>
+        <p> Address Line 2: {{ form.address_L2}}</p>
+        <p>Postcode: {{ form.postcode}}</p>
+        
+    </article>
+{% endblock %}

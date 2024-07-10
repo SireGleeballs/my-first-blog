@@ -41,4 +41,24 @@ def post_edit(request, pk):
 def create_form(request):
     context = {}
     context['form'] = SaveForm()
-    return render(request, "show_form.html", context)
+    return render(request, "blog/show_form.html", context)
+
+def form_list(request):
+    posts = Form.objects.all()
+    return render(request, 'blog/form_list.html', {'forms': posts})
+
+def form_detail(request, pk):
+    form = get_object_or_404(Form, pk=pk)
+    return render(request, 'blog/form_detail.html', {'form': form})
+
+def form_edit(request, pk):
+    post = get_object_or_404(Form, pk=pk)
+    if request.method == "POST":
+        form = SaveForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('form_detail', pk=post.pk)
+    else:
+        form = SaveForm(instance=post)
+    return render(request, 'blog/form_edit.html', {'form': form})
