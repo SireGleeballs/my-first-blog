@@ -11,8 +11,7 @@
         <p> Address Line 1: {{ form.address_L1}}</p>
         <p> Address Line 2: {{ form.address_L2}}</p>
         <p>Postcode: {{ form.postcode}}</p>
-        <p><a href="{% url 'form print' pk=form.pk}">CONVERT TO WORD DOCUMENT</a></p>
+        <p><a href="{% url 'form_download' pk=form.pk %}">CONVERT TO WORD DOCUMENT</a></p>
 
-        
     </article>
 {% endblock %}

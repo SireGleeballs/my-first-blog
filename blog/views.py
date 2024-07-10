@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post, Form
 from .forms import PostForm, SaveForm
+from django_sendfile import sendfile
+from docx import Document
+from docx.shared import Inches
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -66,6 +69,23 @@ def form_edit(request, pk):
         form = SaveForm(instance=post)
     return render(request, 'blog/form_edit.html', {'form': form})
 
-def form_to_word(request, pk):
-    post = get_object_or_404(Form, pk=pk)
 
+
+
+def run(name, address_L1, address_L2, postcode):
+    document = Document()
+    document.add_heading(f'Form for {name}', 0)
+    document.add_paragraph(f'NAME: {name}')
+    document.add_paragraph(f'ADDRESS LINE 1: {address_L1}')
+    document.add_paragraph(f'ADDRESS LINE 2: {address_L2}')
+    document.add_paragraph(f'POSTCODE: {postcode}')
+    document.add_page_break()
+    foldername = "media-private"
+    filename = "demo.docx"
+    document.save(f"{foldername}/{filename}")
+    return filename
+
+def download_form(request, pk):
+    post = get_object_or_404(Form, pk=pk)
+    filename = run(post.name, post.address_L1, post.address_L2, post.postcode)
+    return sendfile(request, filename, attachment=True)
