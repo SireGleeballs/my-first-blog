@@ -62,3 +62,7 @@ def form_edit(request, pk):
     else:
         form = SaveForm(instance=post)
     return render(request, 'blog/form_edit.html', {'form': form})
+
+def form_to_word(request, pk):
+    post = get_object_or_404(Form, pk=pk)
+
