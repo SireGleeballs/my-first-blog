@@ -19,7 +19,7 @@ def post_new(request):
             try:
                 post.author = request.user
             except:
-                post.author = "anonymous"
+                return redirect('post_detail', pk=post.pk)  
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
