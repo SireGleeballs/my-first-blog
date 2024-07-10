@@ -16,3 +16,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Form(models.Model):
+    name = models.CharField(max_length=200)
+    address_L1 = models.CharField(max_length=200)
+    address_L2 = models.CharField(max_length=200)
+    postcode = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
