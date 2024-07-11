@@ -72,7 +72,7 @@ def form_edit(request, pk):
 
 
 
-def run(name, address_L1, address_L2, postcode):
+#def run(name, address_L1, address_L2, postcode):
     document = Document()
     document.add_heading(f'Form for {name}', 0)
     document.add_paragraph(f'NAME: {name}')
@@ -85,7 +85,7 @@ def run(name, address_L1, address_L2, postcode):
     document.save(f"{foldername}/{filename}")
     return filename
 
-def download_form(request, pk):
+#def download_form(request, pk):
     post = get_object_or_404(Form, pk=pk)
     filename = run(post.name, post.address_L1, post.address_L2, post.postcode)
     return sendfile(request, filename, attachment=True)
