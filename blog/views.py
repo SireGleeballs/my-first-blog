@@ -2,9 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post, Form
 from .forms import PostForm, SaveForm
-from docx import Document
-from django_sendfile import sendfile
-from docx.shared import Inches
+#from docx import Document
+#from django_sendfile import sendfile
+#from docx.shared import Inches
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
