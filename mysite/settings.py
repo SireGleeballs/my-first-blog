@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
-SENDFILE_BACKEND = "django_sendfile.backends.development"
-SENDFILE_ROOT = BASE_DIR / "media-private"
 # Application definition
 
 INSTALLED_APPS = [
