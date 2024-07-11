@@ -10,6 +10,4 @@ urlpatterns = [
     path('form/list/', views.form_list, name='form_list'),
     path('form/<int:pk>/', views.form_detail, name='form_detail'),
     path('form/<int:pk>/edit/', views.form_edit, name='form_edit'),
-    path('form/<int:pk>/download', views.download_form, name='form_download'),
-
 ]
