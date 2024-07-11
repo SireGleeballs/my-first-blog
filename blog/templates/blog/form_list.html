@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+    <a href="{% url 'form_new' %}">NEW FORM</a>
     {% for form in forms %}
         <article class="form">
             <h2><a href="{% url 'form_detail' pk=form.pk %}">{{ form.name }}</a></h2>
